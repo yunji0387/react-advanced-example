@@ -1,5 +1,5 @@
 {
-  "homepage": "https://github.com/yunji0387/react-advanced-example",
+  "homepage": "https://yunji0387.github.io/react-advanced-example",
   "name": "graded-assessment",
   "version": "0.1.0",
   "private": true,
@@ -19,6 +19,7 @@
     "framer-motion": "^7.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
