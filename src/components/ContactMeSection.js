@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import {
   Box,
@@ -15,10 +15,10 @@ import {
 import * as Yup from 'yup';
 import FullScreenSection from "./FullScreenSection";
 import useSubmit from "../hooks/useSubmit";
-import {useAlertContext} from "../context/alertContext";
+import { useAlertContext } from "../context/alertContext";
 
 const ContactMeSection = () => {
-  const {isLoading, response, submit} = useSubmit();
+  const { isLoading, response, submit } = useSubmit();
   const { onOpen } = useAlertContext();
 
   const formik = useFormik({
@@ -30,7 +30,7 @@ const ContactMeSection = () => {
     },
     onSubmit: (values) => {
       submit("https://example.com/contactme", values);
-     },
+    },
     validationSchema: Yup.object({
       firstName: Yup.string()
         .min(1, 'Too Short!')
@@ -45,9 +45,9 @@ const ContactMeSection = () => {
   });
 
   useEffect(() => {
-    if(response) {
+    if (response) {
       onOpen(response.type, response.message);
-      if(response.type === "success"){
+      if (response.type === "success") {
         formik.resetForm();
       }
     }
@@ -72,6 +72,7 @@ const ContactMeSection = () => {
                 <Input
                   id="firstName"
                   name="firstName"
+                  {...formik.getFieldProps('firstName')}
                 />
                 <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
               </FormControl>
@@ -81,6 +82,7 @@ const ContactMeSection = () => {
                   id="email"
                   name="email"
                   type="email"
+                  {...formik.getFieldProps('email')}
                 />
                 <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
               </FormControl>
@@ -100,11 +102,12 @@ const ContactMeSection = () => {
                   id="comment"
                   name="comment"
                   height={250}
+                  {...formik.getFieldProps('comment')}
                 />
                 <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
               </FormControl>
               <Button type="submit" colorScheme="purple" width="full">
-                Submit
+                {!isLoading ? "Submit" : "Loading..."}
               </Button>
             </VStack>
           </form>
